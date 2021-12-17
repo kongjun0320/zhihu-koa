@@ -4,31 +4,47 @@ const db = [
   }
 ]
 
+const User = require('../models/users')
+
 class UsersCtl {
-  find(ctx) {
-    ctx.body = db
+  async find(ctx) {
+    ctx.body = await User.find()
   }
-  findById(ctx) {
-    ctx.body = db[ctx.params.id]
+  async findById(ctx) {
+    const user = await User.findById(ctx.params.id)
+    if (!user) {
+      ctx.throw(404, '用户不存在')
+    }
+    ctx.body = user
   }
-  create(ctx) {
+  async create(ctx) {
     ctx.verifyParams({
       name: {
         type: 'string',
         required: true
       }
     })
-    const reqBody = ctx.request.body
-    db.push(reqBody)
-    ctx.body = reqBody
+    const user = await new User(ctx.request.body).save()
+    ctx.body = user
   }
-  update(ctx) {
-    const reqBody = ctx.request.body
-    db[ctx.params.id] = reqBody
-    ctx.body = reqBody
+  async update(ctx) {
+    ctx.verifyParams({
+      name: {
+        type: 'string',
+        required: true
+      }
+    })
+    const user = await User.findByIdAndUpdate(ctx.params.id, ctx.request.body)
+    if (!user) {
+      ctx.throw(404, '用户不存在')
+    }
+    ctx.body = user
   }
-  delete(ctx) {
-    db.splice(ctx.params.id, 1)
+  async delete(ctx) {
+    const user = await User.findByIdAndRemove(ctx.params.id)
+    if (!user) {
+      ctx.throw(404, '用户不存在')
+    }
     ctx.status = 204
   }
 }
