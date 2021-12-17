@@ -12,6 +12,12 @@ class UsersCtl {
     ctx.body = db[ctx.params.id]
   }
   create(ctx) {
+    ctx.verifyParams({
+      name: {
+        type: 'string',
+        required: true
+      }
+    })
     const reqBody = ctx.request.body
     db.push(reqBody)
     ctx.body = reqBody
