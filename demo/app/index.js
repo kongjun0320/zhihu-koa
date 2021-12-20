@@ -2,12 +2,13 @@ const Koa = require('koa')
 const bodyparser = require('koa-bodyparser')
 const parameter = require('koa-parameter')
 const mongoose = require('mongoose')
+const cors = require('koa2-cors')
 const error = require('koa-json-error')
 const installRoutes = require('./routes')
 const { connectionStr } = require('./config')
 
 const app = new Koa()
-
+app.use(cors())
 // connect
 main().catch((err) => console.log(err))
 

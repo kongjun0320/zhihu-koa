@@ -4,7 +4,8 @@ const {
   findById,
   create,
   update,
-  delete: del
+  delete: del,
+  login
 } = require('../controllers/users')
 const router = new Router({ prefix: '/users' })
 
@@ -17,5 +18,7 @@ router.post('/', create)
 router.patch('/:id', update)
 
 router.delete('/:id', del)
+
+router.post('/login', login)
 
 module.exports = router

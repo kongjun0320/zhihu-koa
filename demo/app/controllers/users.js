@@ -1,9 +1,5 @@
-const db = [
-  {
-    name: 'tom'
-  }
-]
-
+const jsonwebtoken = require('jsonwebtoken')
+const { secret } = require('../config')
 const User = require('../models/users')
 
 class UsersCtl {
@@ -59,6 +55,29 @@ class UsersCtl {
       ctx.throw(404, '用户不存在')
     }
     ctx.status = 204
+  }
+  async login(ctx) {
+    ctx.verifyParams({
+      name: {
+        type: 'string',
+        required: true
+      },
+      password: {
+        type: 'string',
+        required: true
+      }
+    })
+    const user = await User.findOne(ctx.request.body)
+    if (!user) {
+      ctx.throw(401, '用户名或密码错误')
+    }
+    const { _id, name } = user
+    const token = jsonwebtoken.sign({ _id, name }, secret, {
+      expiresIn: '1d'
+    })
+    // ctx.set('Access-Control-Expose-Headers', 'token')
+    // ctx.set('token', token)
+    ctx.body = { token }
   }
 }
 
