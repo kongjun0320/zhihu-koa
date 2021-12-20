@@ -1074,6 +1074,13 @@ only@~0.0.2:
   resolved "https://registry.npmjs.org/only/-/only-0.0.2.tgz#2afde84d03e50b9a8edc444e30610a70295edfb4"
   integrity sha1-Kv3oTQPlC5qO3EROMGEKcCle37Q=
 
+opentype.js@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.npmjs.org/opentype.js/-/opentype.js-0.7.3.tgz#40fb8ce18bfd60e74448efdfe442834098397aab"
+  integrity sha1-QPuM4Yv9YOdESO/f5EKDQJg5eqs=
+  dependencies:
+    tiny-inflate "^1.0.2"
+
 p-cancelable@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/p-cancelable/-/p-cancelable-1.1.0.tgz#d078d15a3af409220c886f1d9a0ca2e441ab26cc"
@@ -1332,6 +1339,18 @@ supports-color@^7.1.0:
   integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
   dependencies:
     has-flag "^4.0.0"
+
+svg-captcha@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/svg-captcha/-/svg-captcha-1.4.0.tgz#32ead3c6463936c218bb3bc9ed04fea4eeffe492"
+  integrity sha512-/fkkhavXPE57zRRCjNqAP3txRCSncpMx3NnNZL7iEoyAtYwUjPhJxW6FQTQPG5UPEmCrbFoXS10C3YdJlW7PDg==
+  dependencies:
+    opentype.js "^0.7.3"
+
+tiny-inflate@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/tiny-inflate/-/tiny-inflate-1.0.3.tgz#122715494913a1805166aaf7c93467933eea26c4"
+  integrity sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==
 
 to-readable-stream@^1.0.0:
   version "1.0.0"
