@@ -14,7 +14,7 @@ router.get('/:id', findById)
 
 router.post('/', create)
 
-router.put('/:id', update)
+router.patch('/:id', update)
 
 router.delete('/:id', del)
 
