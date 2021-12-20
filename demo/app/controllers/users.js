@@ -75,8 +75,10 @@ class UsersCtl {
     const token = jsonwebtoken.sign({ _id, name }, secret, {
       expiresIn: '1d'
     })
+    // Test start
     // ctx.set('Access-Control-Expose-Headers', 'token')
     // ctx.set('token', token)
+    // Test end
     ctx.body = { token }
   }
 }

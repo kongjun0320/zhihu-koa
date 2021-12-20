@@ -1,6 +1,8 @@
 const Koa = require('koa')
+const path = require('path')
 const bodyparser = require('koa-bodyparser')
 const parameter = require('koa-parameter')
+const static = require('koa-static')
 const mongoose = require('mongoose')
 const cors = require('koa2-cors')
 const error = require('koa-json-error')
@@ -9,6 +11,7 @@ const { connectionStr } = require('./config')
 
 const app = new Koa()
 app.use(cors())
+app.use(static(path.join(__dirname + '/public')))
 // connect
 main().catch((err) => console.log(err))
 
