@@ -56,6 +56,10 @@ class UsersCtl {
     }
     ctx.status = 204
   }
+  async checkOwner(ctx, next) {
+    if (ctx.params.id !== ctx.state.user._id) ctx.throw(403, '没有权限')
+    await next()
+  }
   async login(ctx) {
     ctx.verifyParams({
       name: {
