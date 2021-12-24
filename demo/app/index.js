@@ -1,6 +1,6 @@
 const Koa = require('koa')
 const path = require('path')
-const bodyparser = require('koa-bodyparser')
+const koaBody = require('koa-body')
 const parameter = require('koa-parameter')
 const static = require('koa-static')
 const mongoose = require('mongoose')
@@ -25,7 +25,15 @@ app.use(
       process.env.NODE_ENV === 'production' ? rest : { stack, ...rest }
   })
 )
-app.use(bodyparser())
+app.use(
+  koaBody({
+    multipart: true,
+    formidable: {
+      uploadDir: path.join(__dirname, '/public/uploads'),
+      keepExtensions: true
+    }
+  })
+)
 app.use(parameter(app))
 installRoutes(app)
 
